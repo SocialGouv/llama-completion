@@ -8,6 +8,8 @@ services:
       dockerfile: Dockerfile
     environment:
       LLAMA_MODEL: ${LLAMA_MODEL}
+    volumes:
+      - ../goinfre:/goinfre
     ports:
       - 1664:3000
   
