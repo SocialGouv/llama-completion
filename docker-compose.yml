@@ -1,0 +1,13 @@
+
+version: '3.0'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      LLAMA_MODEL: ${LLAMA_MODEL}
+    ports:
+      - 1664:3000
+  
