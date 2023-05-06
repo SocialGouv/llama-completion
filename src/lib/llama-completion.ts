@@ -23,16 +23,22 @@ const config: LoadConfig = {
   logitsAll: false,
   vocabOnly: false,
   useMlock: false,
-  embedding: true,
+  embedding: false,
   useMmap: true,
 }
 
 llama.load(config)
 
 export async function createCompletion(message: string) {
-  const prompt = `A chat between a user and an assistant.
-USER: ${message}
-ASSISTANT:`
+  const prompt = `A chat between a curious human and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the human's questions.
+
+### Human: Hello, Assistant.
+### Assistant: Hello. How may I help you today?
+### Human: Please tell me the largest city in Europe.
+### Assistant: Sure. The largest city in Europe is Moscow, the capital of Russia.
+### Human: ${message}`
+
+  console.log("PROMPT:", prompt)
 
   const params = {
     nThreads: 4,
@@ -48,6 +54,7 @@ ASSISTANT:`
     let result = ""
 
     llama.createCompletion(params, (response) => {
+      console.log("token:", response.token)
       result += response.token
       if (response.completed) {
         resolve(result)
