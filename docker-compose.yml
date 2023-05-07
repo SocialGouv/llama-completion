@@ -7,6 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      N_THREADS: ${N_THREADS}
       LLAMA_MODEL: ${LLAMA_MODEL}
     volumes:
       - ../goinfre:/goinfre
