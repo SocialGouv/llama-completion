@@ -41,7 +41,7 @@ export async function createCompletion(message: string) {
   console.log("PROMPT:", prompt)
 
   const params = {
-    nThreads: 8,
+    nThreads: parseInt(process.env.N_THREADS || "4", 10),
     nTokPredict: 2048,
     topK: 40,
     topP: 0.1,
